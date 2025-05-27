@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "NexaSoft - Tech Solutions Company",
   description:
     "Transforming businesses through innovative technology solutions. Web development, mobile apps, and IoT systems.",
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
 export default function RootLayout({
@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>

@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { ArrowLeft, Send, MapPin, Phone, Mail, Clock, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -14,8 +14,11 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import emailjs from '@emailjs/browser'
 
 export default function ContactPage() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,11 +30,28 @@ export default function ContactPage() {
   })
   const [isSubmitted, setIsSubmitted] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the data to your backend
-    console.log("Contact form submitted:", formData)
-    setIsSubmitted(true)
+    
+    try {
+      setIsLoading(true);
+      
+      // Send email using EmailJS with environment variables
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+      
+      console.log("Contact form submitted:", formData)
+      setIsSubmitted(true)
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      alert("There was an error sending your message. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   if (isSubmitted) {
@@ -60,7 +80,7 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-20 pt-32">
+      <div className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Button variant="ghost" asChild className="mb-6 text-white hover:bg-white/10">
             <Link href="/">
@@ -91,27 +111,29 @@ export default function ContactPage() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid md:grid-cols-2 gap-4">
                       <div>
                         <Label htmlFor="name">Full Name *</Label>
                         <Input
                           id="name"
+                          name="name"
                           required
                           value={formData.name}
                           onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
-                          placeholder="John Doe"
+                          placeholder="First Name Last Name"
                         />
                       </div>
                       <div>
                         <Label htmlFor="email">Email Address *</Label>
                         <Input
                           id="email"
+                          name="email"
                           type="email"
                           required
                           value={formData.email}
                           onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
-                          placeholder="john@example.com"
+                          placeholder="myemail@gmail.com"
                         />
                       </div>
                     </div>
@@ -121,6 +143,7 @@ export default function ContactPage() {
                         <Label htmlFor="company">Company Name</Label>
                         <Input
                           id="company"
+                          name="company"
                           value={formData.company}
                           onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
                           placeholder="Your Company"
@@ -130,9 +153,10 @@ export default function ContactPage() {
                         <Label htmlFor="phone">Phone Number</Label>
                         <Input
                           id="phone"
+                          name="phone"
                           value={formData.phone}
                           onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
-                          placeholder="+1 (555) 123-4567"
+                          placeholder="+250 123 456 789"
                         />
                       </div>
                     </div>
@@ -152,11 +176,13 @@ export default function ContactPage() {
                             <SelectItem value="general">General Inquiry</SelectItem>
                           </SelectContent>
                         </Select>
+                        <input type="hidden" name="inquiryType" value={formData.inquiryType} />
                       </div>
                       <div>
                         <Label htmlFor="subject">Subject</Label>
                         <Input
                           id="subject"
+                          name="subject"
                           value={formData.subject}
                           onChange={(e) => setFormData((prev) => ({ ...prev, subject: e.target.value }))}
                           placeholder="Brief subject line"
@@ -168,6 +194,7 @@ export default function ContactPage() {
                       <Label htmlFor="message">Message *</Label>
                       <Textarea
                         id="message"
+                        name="message"
                         required
                         rows={6}
                         value={formData.message}
@@ -180,8 +207,9 @@ export default function ContactPage() {
                       type="submit"
                       className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700"
                       size="lg"
+                      disabled={isLoading}
                     >
-                      Send Message
+                      {isLoading ? "Sending..." : "Send Message"}
                       <Send className="ml-2 h-4 w-4" />
                     </Button>
                   </form>
@@ -202,11 +230,11 @@ export default function ContactPage() {
                     <div>
                       <h4 className="font-medium text-gray-900">Office Address</h4>
                       <p className="text-gray-600 text-sm">
-                        123 Tech Street
+                        87 KN 123 St
                         <br />
-                        Innovation District
+                        Kigali, Rwanda
                         <br />
-                        City, State 12345
+                        Nyarugenge,Kigali
                       </p>
                     </div>
                   </div>
@@ -214,14 +242,14 @@ export default function ContactPage() {
                     <Phone className="h-5 w-5 text-emerald-600 mt-1" />
                     <div>
                       <h4 className="font-medium text-gray-900">Phone</h4>
-                      <p className="text-gray-600 text-sm">+1 (555) 123-4567</p>
+                      <p className="text-gray-600 text-sm">+250 786 392 336</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <Mail className="h-5 w-5 text-emerald-600 mt-1" />
                     <div>
                       <h4 className="font-medium text-gray-900">Email</h4>
-                      <p className="text-gray-600 text-sm">hello@nexasoft.com</p>
+                      <p className="text-gray-600 text-sm">info.nxsoft@gmail.com</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">

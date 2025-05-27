@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Send, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -15,8 +15,15 @@ import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import emailjs from '@emailjs/browser'
 
 export default function StartProjectPage() {
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+
+    useEffect(() => {
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "")
+  }, [])
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -55,11 +62,39 @@ export default function StartProjectPage() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the data to your backend
-    console.log("Project submission:", formData)
-    setIsSubmitted(true)
+    setLoading(true)
+    setError("")
+
+    try {
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || "Not specified",
+        phone: formData.phone || "Not specified",
+        projectType: formData.projectType || "Not specified",
+        budget: formData.budget || "Not specified",
+        timeline: formData.timeline || "Not specified",
+        services: formData.services.join(", ") || "None selected",
+        description: formData.description,
+      }
+
+            // Send the email using EmailJS
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+        templateParams
+      )
+
+      console.log("Project submission:", formData)
+      setIsSubmitted(true)
+    } catch (err) {
+      console.error("Failed to send email:", err)
+      setError("Failed to submit project request. Please try again or contact us directly.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (isSubmitted) {
@@ -242,14 +277,27 @@ export default function StartProjectPage() {
                       />
                     </div>
 
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700"
-                      size="lg"
-                    >
-                      Submit Project Request
-                      <Send className="ml-2 h-4 w-4" />
-                    </Button>
+                   <Button
+  type="submit"
+  className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700"
+  size="lg"
+  disabled={loading}
+>
+  {loading ? (
+    <>Processing<span className="animate-pulse">...</span></>
+  ) : (
+    <>
+      Submit Project Request
+      <Send className="ml-2 h-4 w-4" />
+    </>
+  )}
+</Button>
+
+{error && (
+  <div className="text-red-500 text-sm mt-2">
+    {error}
+  </div>
+)}
                   </form>
                 </CardContent>
               </Card>

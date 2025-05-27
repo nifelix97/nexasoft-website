@@ -20,7 +20,7 @@ export default function PortfolioPage() {
         "Comprehensive real estate platform connecting buyers, sellers, and agents with advanced search capabilities, property management, and virtual tours.",
       category: "Real Estate",
       url: "https://www.tunganawe.com/",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/tunga.png?height=400&width=600",
       tech: ["Next.js", "React", "Node.js", "MongoDB", "Authentication", "Payment Gateway"],
       features: [
         "Property Search & Filtering",
@@ -30,7 +30,7 @@ export default function PortfolioPage() {
         "User Authentication",
         "Mobile Responsive Design",
       ],
-      timeline: "12 weeks",
+      timeline: "4 weeks",
       client: "Real Estate Agency",
     },
     {
@@ -39,7 +39,7 @@ export default function PortfolioPage() {
         "E-commerce platform specializing in home appliances and household items with inventory management, order tracking, and payment processing.",
       category: "E-commerce",
       url: "https://umusirimu.com/",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/umusirimu.png?height=400&width=600",
       tech: ["React", "Node.js", "Express", "PostgreSQL", "Stripe", "AWS"],
       features: [
         "Product Catalog Management",
@@ -49,7 +49,7 @@ export default function PortfolioPage() {
         "Inventory Management",
         "Customer Reviews",
       ],
-      timeline: "10 weeks",
+      timeline: "6 weeks",
       client: "Home Appliances Retailer",
     },
     {
@@ -58,7 +58,7 @@ export default function PortfolioPage() {
         "Modern e-commerce solution for electronic devices and tech gadgets with advanced filtering, comparison tools, and tech specifications.",
       category: "E-commerce",
       url: "https://nexa-tech-hub.vercel.app/",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/nexat.png?height=400&width=600",
       tech: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Stripe", "Sanity CMS"],
       features: [
         "Product Comparison Tool",
@@ -68,35 +68,35 @@ export default function PortfolioPage() {
         "Wishlist Functionality",
         "Fast Performance",
       ],
-      timeline: "8 weeks",
+      timeline: "6 weeks",
       client: "Electronics Retailer",
     },
-    {
-      name: "Smart Home IoT System",
-      description:
-        "Comprehensive IoT solution for home automation including lighting, temperature control, security cameras, and energy monitoring.",
-      category: "IoT",
-      url: "#",
-      image: "/placeholder.svg?height=400&width=600",
-      tech: ["Arduino", "Raspberry Pi", "Python", "MQTT", "AWS IoT", "React Dashboard"],
-      features: [
-        "Smart Lighting Control",
-        "Temperature Monitoring",
-        "Security Camera Integration",
-        "Energy Usage Tracking",
-        "Mobile App Control",
-        "Voice Assistant Integration",
-      ],
-      timeline: "16 weeks",
-      client: "Smart Home Company",
-    },
+    // {
+    //   name: "Smart Home IoT System",
+    //   description:
+    //     "Comprehensive IoT solution for home automation including lighting, temperature control, security cameras, and energy monitoring.",
+    //   category: "IoT",
+    //   url: "#",
+    //   image: "/placeholder.svg?height=400&width=600",
+    //   tech: ["Arduino", "Raspberry Pi", "Python", "MQTT", "AWS IoT", "React Dashboard"],
+    //   features: [
+    //     "Smart Lighting Control",
+    //     "Temperature Monitoring",
+    //     "Security Camera Integration",
+    //     "Energy Usage Tracking",
+    //     "Mobile App Control",
+    //     "Voice Assistant Integration",
+    //   ],
+    //   timeline: "12 weeks",
+    //   client: "Smart Home Company",
+    // },
     {
       name: "Healthcare Management System",
       description:
         "Custom software solution for healthcare providers with patient management, appointment scheduling, and medical records.",
       category: "Custom Software",
       url: "#",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/bloodbag.jpg?height=400&width=600",
       tech: ["React", "Node.js", "PostgreSQL", "Docker", "AWS", "HIPAA Compliant"],
       features: [
         "Patient Management",
@@ -106,7 +106,7 @@ export default function PortfolioPage() {
         "HIPAA Compliance",
         "Reporting Dashboard",
       ],
-      timeline: "20 weeks",
+      timeline: "14 weeks",
       client: "Healthcare Provider",
     },
     {
@@ -115,7 +115,7 @@ export default function PortfolioPage() {
         "Cross-platform mobile application for restaurant ordering, table reservations, and loyalty program management.",
       category: "Mobile App",
       url: "#",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/food.jpg?height=400&width=600",
       tech: ["React Native", "Firebase", "Stripe", "Google Maps API", "Push Notifications"],
       features: [
         "Online Ordering System",
@@ -125,7 +125,7 @@ export default function PortfolioPage() {
         "GPS Integration",
         "Payment Processing",
       ],
-      timeline: "14 weeks",
+      timeline: "5 weeks",
       client: "Restaurant Chain",
     },
   ]
@@ -141,7 +141,7 @@ export default function PortfolioPage() {
       <Navbar />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-20 pt-32">
+      <div className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-4 bg-white/20 text-white">Our Work</Badge>
@@ -312,20 +312,20 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-700 text-white">
+      <section className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Join Our Success Stories?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
             Let's create something amazing together. Start your project today and see your vision come to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-emerald-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-white text-emerald-600 hover:bg-white/10">
               <Link href="/start-project">
                 Start Your Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button asChild size="lg" variant="outline" className="border-white text-emerald-600 hover:bg-white/10">
               <Link href="/schedule-call">Schedule Consultation</Link>
             </Button>
           </div>

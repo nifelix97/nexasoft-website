@@ -39,22 +39,24 @@ export function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link
-              href="/"
-              className={`transition-colors ${
-                isActive("/")
-                  ? "text-emerald-600 dark:text-emerald-400"
-                  : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
-              }`}
-            >
-              Home
-            </Link>
+           <Link
+  href="/"
+  className={`transition-colors ${
+    isActive("/")
+      ? "text-emerald-600 dark:text-emerald-400" // Changed from blue to match your color scheme
+      : scrollY <= 50
+        ? "text-white hover:text-emerald-200" // White text when navbar is transparent
+        : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400" // Dark text when scrolled
+  }`}
+>
+  Home
+</Link>
             <Link
               href="/services"
               className={`transition-colors ${
                 isActive("/services")
                   ? "text-emerald-600 dark:text-emerald-400"
-                  : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                  : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
               }`}
             >
               Services
@@ -64,7 +66,7 @@ export function Navbar() {
               className={`transition-colors ${
                 isActive("/portfolio")
                   ? "text-emerald-600 dark:text-emerald-400"
-                  : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                  : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
               }`}
             >
               Portfolio
@@ -74,7 +76,7 @@ export function Navbar() {
               className={`transition-colors ${
                 isActive("/about")
                   ? "text-emerald-600 dark:text-emerald-400"
-                  : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                  : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
               }`}
             >
               About
@@ -84,7 +86,7 @@ export function Navbar() {
               className={`transition-colors ${
                 isActive("/contact")
                   ? "text-emerald-600 dark:text-emerald-400"
-                  : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                  : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
               }`}
             >
               Contact
@@ -116,7 +118,7 @@ export function Navbar() {
                 className={`transition-colors ${
                   isActive("/")
                     ? "text-emerald-600 dark:text-emerald-400"
-                    : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                    : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -127,7 +129,7 @@ export function Navbar() {
                 className={`transition-colors ${
                   isActive("/services")
                     ? "text-emerald-600 dark:text-emerald-400"
-                    : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                    : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -138,7 +140,7 @@ export function Navbar() {
                 className={`transition-colors ${
                   isActive("/portfolio")
                     ? "text-emerald-600 dark:text-emerald-400"
-                    : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                    : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -149,7 +151,7 @@ export function Navbar() {
                 className={`transition-colors ${
                   isActive("/about")
                     ? "text-emerald-600 dark:text-emerald-400"
-                    : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                    : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -160,7 +162,7 @@ export function Navbar() {
                 className={`transition-colors ${
                   isActive("/contact")
                     ? "text-emerald-600 dark:text-emerald-400"
-                    : "text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
+                    : "text-gray-400 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400"
                 }`}
                 onClick={() => setIsMenuOpen(false)}
               >

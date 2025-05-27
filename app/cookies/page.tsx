@@ -72,7 +72,7 @@ export default function CookiePolicyPage() {
       <Navbar />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-20 pt-32">
+      <div className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Button variant="ghost" asChild className="mb-6 text-white hover:bg-white/10">
             <Link href="/">

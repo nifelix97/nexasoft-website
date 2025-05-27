@@ -42,7 +42,7 @@ export default function NexaSoftWebsite() {
       description: "Comprehensive real estate platform connecting buyers, sellers, and agents",
       category: "Real Estate",
       url: "https://www.tunganawe.com/",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/tunga.png?height=300&width=500",
       tech: ["Next.js", "React", "Database", "Authentication"],
     },
     {
@@ -50,7 +50,7 @@ export default function NexaSoftWebsite() {
       description: "E-commerce platform specializing in home appliances and household items",
       category: "E-commerce",
       url: "https://umusirimu.com/",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/umusirimu.png?height=300&width=500",
       tech: ["E-commerce", "Payment Gateway", "Inventory Management", "Mobile Responsive"],
     },
     {
@@ -58,7 +58,7 @@ export default function NexaSoftWebsite() {
       description: "Modern e-commerce solution for electronic devices and tech gadgets",
       category: "E-commerce",
       url: "https://nexa-tech-hub.vercel.app/",
-      image: "/placeholder.svg?height=300&width=500",
+      image: "/nexat.png?height=300&width=500",
       tech: ["Next.js", "Vercel", "Modern UI", "Fast Performance"],
     },
   ]
@@ -302,7 +302,7 @@ export default function NexaSoftWebsite() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gradient-to-br from-emerald-600 to-teal-700 text-white">
+      <section id="contact" className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Badge className="mb-4 bg-white/20 text-white">Get In Touch</Badge>
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Start Your Project?</h2>
@@ -311,7 +311,7 @@ export default function NexaSoftWebsite() {
             for a free consultation.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-emerald-600 hover:bg-gray-100 text-lg px-8 py-3">
+            <Button asChild size="lg" className="bg-white text-emerald-600 hover:bg-white/10 text-lg px-8 py-3">
               <Link href="/start-project">
                 Start a Project
                 <ArrowRight className="ml-2 h-5 w-5" />
@@ -321,7 +321,7 @@ export default function NexaSoftWebsite() {
               asChild
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white/10 text-lg px-8 py-3"
+              className="border-white text-emerald-600 hover:bg-white/10 text-lg px-8 py-3"
             >
               <Link href="/schedule-call">Schedule a Call</Link>
             </Button>

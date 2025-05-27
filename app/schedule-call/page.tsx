@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Calendar, Clock, CheckCircle, Video, Phone, MessageSquare } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -13,11 +13,19 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
+import emailjs from '@emailjs/browser'
 
 export default function ScheduleCallPage() {
   const [selectedDate, setSelectedDate] = useState("")
   const [selectedTime, setSelectedTime] = useState("")
   const [callType, setCallType] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState("")
+
+useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "")
+  }, [])
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,23 +36,79 @@ export default function ScheduleCallPage() {
   })
   const [isScheduled, setIsScheduled] = useState(false)
 
-  const availableDates = [
-    "2024-01-15",
-    "2024-01-16",
-    "2024-01-17",
-    "2024-01-18",
-    "2024-01-19",
-    "2024-01-22",
-    "2024-01-23",
-  ]
+const availableDates = useMemo(() => {
+  // Generate dates for the next 2 weeks, excluding weekends
+  const dates = [];
+  const today = new Date();
+  
+  // Start from tomorrow
+  const startDate = new Date(today);
+  startDate.setDate(today.getDate() + 1);
+  
+  // Generate dates for next 14 business days
+  for (let i = 0; i < 30; i++) {
+    const date = new Date(startDate);
+    date.setDate(startDate.getDate() + i);
+    
+    // Skip weekends (0 = Sunday, 6 = Saturday)
+    const dayOfWeek = date.getDay();
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+      // Format date as YYYY-MM-DD
+      const formattedDate = date.toISOString().split('T')[0];
+      dates.push(formattedDate);
+      
+      // Stop after collecting 14 business days
+      if (dates.length === 14) break;
+    }
+  }
+  
+  return dates;
+}, []);
 
   const timeSlots = ["09:00 AM", "10:00 AM", "11:00 AM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM"]
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the data to your backend
-    console.log("Call scheduled:", { ...formData, selectedDate, selectedTime, callType })
-    setIsScheduled(true)
+    setLoading(true)
+    setError("")
+
+    try {
+      // Format date for better readability
+      const formattedDate = selectedDate ? 
+        new Date(selectedDate).toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }) : "";
+
+              const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || "Not specified",
+        phone: formData.phone || "Not specified",
+        projectType: formData.projectType || "Not specified",
+        message: formData.message || "No message provided",
+        callDate: formattedDate,
+        callTime: selectedTime,
+        callType: callType,
+      }
+
+      // Send the email using EmailJS
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
+        templateParams
+      )
+
+      console.log("Call scheduled:", { ...formData, selectedDate, selectedTime, callType })
+      setIsScheduled(true)
+    } catch (err) {
+      console.error("Failed to send email:", err)
+      setError("Failed to schedule consultation. Please try again or contact us directly.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (isScheduled) {
@@ -257,15 +321,27 @@ export default function ScheduleCallPage() {
                       />
                     </div>
 
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700"
-                      size="lg"
-                      disabled={!selectedDate || !selectedTime || !callType}
-                    >
-                      Schedule Consultation
-                      <Calendar className="ml-2 h-4 w-4" />
-                    </Button>
+                   <Button
+  type="submit"
+  className="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700"
+  size="lg"
+  disabled={!selectedDate || !selectedTime || !callType || loading}
+>
+  {loading ? (
+    <>Processing<span className="animate-pulse">...</span></>
+  ) : (
+    <>
+      Schedule Consultation
+      <Calendar className="ml-2 h-4 w-4" />
+    </>
+  )}
+</Button>
+
+{error && (
+  <div className="text-red-500 text-sm mt-2">
+    {error}
+  </div>
+)}
                   </form>
                 </CardContent>
               </Card>

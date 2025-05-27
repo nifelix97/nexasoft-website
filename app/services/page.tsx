@@ -117,7 +117,7 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-20 pt-32">
+      <div className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge className="mb-4 bg-white/20 text-white">Our Services</Badge>
@@ -172,7 +172,7 @@ export default function ServicesPage() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 pt-4 border-t dark:border-gray-700">
+                  {/* <div className="grid grid-cols-2 gap-4 pt-4 border-t dark:border-gray-700">
                     <div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">Starting Price</div>
                       <div className="font-semibold text-emerald-600 dark:text-emerald-400">{service.pricing}</div>
@@ -181,7 +181,7 @@ export default function ServicesPage() {
                       <div className="text-sm text-gray-600 dark:text-gray-400">Timeline</div>
                       <div className="font-semibold text-gray-900 dark:text-white">{service.timeline}</div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <Button
                     asChild
@@ -227,17 +227,17 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-700 text-white">
+      <section className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Start Your Project?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
             Let's discuss your requirements and create a solution that drives your business forward.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-emerald-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-white text-emerald-600 hover:bg-white/10">
               <Link href="/start-project">Start a Project</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button asChild size="lg" variant="outline" className="border-white text-emerald-600 hover:bg-white/10">
               <Link href="/schedule-call">Schedule Consultation</Link>
             </Button>
           </div>

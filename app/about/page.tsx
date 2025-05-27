@@ -98,7 +98,7 @@ export default function AboutPage() {
       <Navbar />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-emerald-600 to-teal-700 text-white py-20 pt-32">
+      <div className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Button variant="ghost" asChild className="mb-6 text-white hover:bg-white/10">
             <Link href="/">
@@ -204,7 +204,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-emerald-50">
+      {/* <section className="py-20 bg-gradient-to-br from-gray-50 to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-emerald-100 text-emerald-800">Our Team</Badge>
@@ -235,7 +235,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Timeline */}
       <section className="py-20 bg-white">
@@ -278,17 +278,17 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-emerald-600 to-teal-700 text-white">
+      <section className="bg-gradient-to-r from-slate-700 to-gray-900 text-white py-20 pt-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Work With Us?</h2>
           <p className="text-xl mb-8 max-w-3xl mx-auto opacity-90">
             Join our growing list of satisfied clients and let's create something amazing together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-emerald-600 hover:bg-gray-100">
+            <Button asChild size="lg" className="bg-white text-emerald-600 hover:bg-white/10">
               <Link href="/start-project">Start Your Project</Link>
             </Button>
-            <Button asChild size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button asChild size="lg" variant="outline" className="border-white text-emerald-600 hover:bg-white/10">
               <Link href="/schedule-call">Schedule a Meeting</Link>
             </Button>
           </div>
