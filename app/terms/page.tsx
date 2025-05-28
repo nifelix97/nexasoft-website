@@ -228,13 +228,13 @@ export default function TermsOfServicePage() {
               </p>
               <div className="space-y-2 text-sm dark:text-gray-300">
                 <p>
-                  <strong>Email:</strong> legal@nexasoft.com
+                  <strong>Email:</strong> info.nxsoft@gmail.com
                 </p>
                 <p>
-                  <strong>Phone:</strong> +1 (555) 123-4567
+                  <strong>Phone:</strong> +250 786 392 336
                 </p>
                 <p>
-                  <strong>Address:</strong> 123 Tech Street, Innovation District, City, State 12345
+                  <strong>Address:</strong>  87 KN 123 St, Kigali, Rwanda
                 </p>
               </div>
               <Button asChild className="mt-4 bg-emerald-600 hover:bg-emerald-700">

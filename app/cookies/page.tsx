@@ -297,10 +297,10 @@ export default function CookiePolicyPage() {
               </p>
               <div className="space-y-2 text-sm dark:text-gray-300">
                 <p>
-                  <strong>Email:</strong> privacy@nexasoft.com
+                  <strong>Email:</strong> info.nxsoft@gmail.com
                 </p>
                 <p>
-                  <strong>Phone:</strong> +1 (555) 123-4567
+                  <strong>Phone:</strong> +250 786 392 336
                 </p>
               </div>
               <Button asChild className="mt-4 bg-emerald-600 hover:bg-emerald-700">
